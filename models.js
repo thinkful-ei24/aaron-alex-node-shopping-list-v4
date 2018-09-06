@@ -42,7 +42,7 @@ const ShoppingList = {
     const { id } = updatedItem;
     if (!(id in this.items)) {
       throw StorageException(
-        `Can't update item \`${id}\` because doesn't exist.`)
+        `Can't update item \`${id}\` because doesn't exist.`);
     }
     this.items[updatedItem.id] = updatedItem;
     return updatedItem;
@@ -96,4 +96,4 @@ function createRecipes() {
 module.exports = {
   ShoppingList: createShoppingList(),
   Recipes: createRecipes()
-}
+};

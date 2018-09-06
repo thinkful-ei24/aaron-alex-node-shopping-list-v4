@@ -5,14 +5,9 @@ const morgan = require('morgan');
 const shoppingListRouter = require('./routers/shopping-list.routes');
 const recipesRouter = require('./routers/recipes.routes');
 
-const { ShoppingList, Recipes } = require('./models');
-
 const app = express();
 
-
-app.use(morgan('common'));
-app.use(express.static('public'));
-
+const { ShoppingList, Recipes } = require('./models');
 
 ShoppingList.create('beans', 2);
 ShoppingList.create('tomatoes', 3);
@@ -25,9 +20,11 @@ Recipes.create(
   'milkshake', ['2 tbsp cocoa', '2 cups vanilla ice cream', '1 cup milk']);
 
 
+app.use(morgan('common'));
+app.use(express.static('public'));
+
 app.use('/shopping-list', shoppingListRouter.router);
 app.use('/recipes', recipesRouter.router);
-
 
 
 app.listen(process.env.PORT || 8080, () => {
